@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         PROJECT_NAME = "my-profile-app"
-        PROJECT_DIR = "/home/apps/my-profile-app"
-        DOCKER_COMPOSE = "docker-compose -f ${PROJECT_DIR}/docker-compose.yml"
+        PROJECT_DIR = "/home/apps"
+        DOCKER_COMPOSE = "docker compose -f ${PROJECT_DIR}/docker-compose.yml"
     }
 
     stages {
@@ -16,17 +16,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                dir("${env.PROJECT_DIR}") {
-                    sh "${env.DOCKER_COMPOSE} build --no-cache"
-                }
+                sh "${env.DOCKER_COMPOSE} build --no-cache ${PROJECT_NAME}"
             }
         }
 
         stage('Deploy Container') {
             steps {
-                dir("${env.PROJECT_DIR}") {
-                    sh "${env.DOCKER_COMPOSE} up -d"
-                }
+                sh "${env.DOCKER_COMPOSE} up -d ${PROJECT_NAME}"
             }
         }
     }
