@@ -14,9 +14,13 @@ pipeline {
             }
         }
 
-        stage('Check Docker Version') {
+        stage('Clean Old Containers') {
             steps {
-                sh "docker --version"
+                sh """
+                  ${env.DOCKER_COMPOSE} down --remove-orphans --rmi local || true
+                  docker rm -f ${PROJECT_NAME} || true
+                  docker rmi -f \$(docker images -q ${PROJECT_NAME}) || true
+                """
             }
         }
 
