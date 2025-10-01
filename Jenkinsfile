@@ -4,7 +4,7 @@ pipeline {
     environment {
         PROJECT_NAME = "my-profile-app"
         PROJECT_DIR = "/home/apps"
-        DOCKER_COMPOSE = "docker-compose -f ${PROJECT_DIR}/docker-compose.yml"
+        DOCKER_COMPOSE = "docker compose -f ${PROJECT_DIR}/docker-compose.yml"
     }
 
     stages {
