@@ -7,19 +7,18 @@ pipeline {
         DOCKER_COMPOSE = "docker-compose -f ${PROJECT_DIR}/docker-compose.yml"
     }
 
-    stages {
-        stage('Checkout Code') {
-            steps {
-                checkout scm
+        stages {
+            stage('Checkout Code') {
+                steps {
+                    checkout scm
+                }
             }
-        }
 
         stage('Clean Old Containers') {
             steps {
                 sh """
-                  ${env.DOCKER_COMPOSE} down --remove-orphans --rmi local || true
-                  docker rm -f ${PROJECT_NAME} || true
-                  docker rmi -f \$(docker images -q ${PROJECT_NAME}) || true
+                docker rm -f ${PROJECT_NAME} || true
+                docker rmi -f \$(docker images -q ${PROJECT_NAME}) || true
                 """
             }
         }
