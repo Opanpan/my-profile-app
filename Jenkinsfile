@@ -14,6 +14,12 @@ pipeline {
             }
         }
 
+        stage('Check Docker Version') {
+            steps {
+                sh "docker --version"
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 sh "${env.DOCKER_COMPOSE} build --no-cache ${PROJECT_NAME}"
