@@ -27,12 +27,15 @@ pipeline {
         stage('Clean Old Containers & Images') {
             steps {
                 sh """
-                ${DOCKER_COMPOSE} down
-                docker container prune -f || true
-                docker image prune -f || true
+                echo "🧹 Stopping and removing containers for ${PROJECT_NAME}..."
+                ${DOCKER_COMPOSE} down --remove-orphans
+
+                echo "🧹 Removing old images related to ${PROJECT_NAME}..."
+                docker images '${PROJECT_NAME}_*' -q | xargs -r docker rmi -f || true
                 """
             }
         }
+
 
         stage('Build Docker Image') {
             steps {
