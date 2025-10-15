@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        PROJECT_NAME = "my-profile-app"
-        PROJECT_DIR = "/home/apps"
+        PROJECT_NAME = 'my-profile-app'
+        PROJECT_DIR = '/home/apps'
         BUILD_TAG = "build-${env.BUILD_NUMBER}"
         DOCKER_COMPOSE = "docker compose -f ${PROJECT_DIR}/docker-compose.yml"
     }
@@ -24,18 +24,17 @@ pipeline {
             }
         }
 
-        stage('Clean Old Containers & Images') {
-            steps {
-                sh """
-                echo "🧹 Stopping and removing containers for ${PROJECT_NAME}..."
-                ${DOCKER_COMPOSE} down --remove-orphans
+        // stage('Clean Old Containers & Images') {
+        //     steps {
+        //         sh """
+        //         echo "🧹 Stopping and removing containers for ${PROJECT_NAME}..."
+        //         ${DOCKER_COMPOSE} down --remove-orphans
 
-                echo "🧹 Removing old images related to ${PROJECT_NAME}..."
-                docker images '${PROJECT_NAME}_*' -q | xargs -r docker rmi -f || true
-                """
-            }
+        //         echo "🧹 Removing old images related to ${PROJECT_NAME}..."
+        //         docker images '${PROJECT_NAME}_*' -q | xargs -r docker rmi -f || true
+        //         """
+        //     }
         }
-
 
         stage('Build Docker Image') {
             steps {
