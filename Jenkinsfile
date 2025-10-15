@@ -34,7 +34,7 @@ pipeline {
         //         docker images '${PROJECT_NAME}_*' -q | xargs -r docker rmi -f || true
         //         """
         //     }
-        }
+        // }
 
         stage('Build Docker Image') {
             steps {
