@@ -48,6 +48,13 @@ pipeline {
             }
         }
 
+        stage('Prune Old Images') {
+            steps {
+                echo "🧹 Cleaning up old Docker images..."
+                sh "docker image prune -a -f || true"
+            }
+        }
+
         stage('Verify Deployment') {
             steps {
                 sh "docker ps | grep ${PROJECT_NAME}"
