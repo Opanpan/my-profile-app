@@ -3,29 +3,28 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+import { ChevronRight, Menu, X } from 'lucide-react';
 
-const SIDEBAR_MENU = ['About', 'Skills', 'Education', 'Experience', 'Contact'];
+const SIDEBAR_MENU = [
+  { name: 'About', url: '/about' },
+  { name: 'Skills', url: '/skills' },
+  { name: 'Education', url: '/education' },
+  { name: 'Experience', url: '/experience' },
+  { name: 'Contact', url: '/contact' },
+];
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
     <motion.aside
-      animate={{
-        width: isOpen ? 180 : 80,
-      }}
-      transition={{
-        duration: 0.3,
-        ease: 'easeInOut',
-      }}
-      className='h-screen bg-[#111111] flex flex-col justify-between overflow-hidden'
+      animate={{ width: isOpen ? 180 : 80 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      className='h-screen bg-[#111111] flex flex-col justify-between overflow-hidden relative'
     >
-      {/* Top Section (Logo) */}
-      <div className='p-4'>
-        <div
-          className='flex flex-col items-center bg-black p-4 rounded-[20px] cursor-pointer'
-          onClick={() => setIsOpen((prev) => !prev)}
-        >
+      <Link href='/'>
+        <div className='p-4 flex flex-col items-center bg-black rounded-[20px] mx-4 mt-4 relative'>
           <Image
             src='/logo-sidebar.svg'
             alt='logo-sidebar'
@@ -34,7 +33,6 @@ export default function Sidebar() {
             priority
           />
 
-          {/* Animated label */}
           <AnimatePresence mode='wait'>
             {isOpen && (
               <motion.p
@@ -49,10 +47,19 @@ export default function Sidebar() {
               </motion.p>
             )}
           </AnimatePresence>
-        </div>
-      </div>
 
-      {/* Navigation */}
+          {/* === Toggle Button === */}
+          <motion.button
+            onClick={() => setIsOpen((prev) => !prev)}
+            whileTap={{ scale: 0.9 }}
+            className='absolute right-[-10px] z-[200] top-1/2 -translate-y-1/2 bg-[#222] hover:bg-[#333] border border-[#333] p-2 rounded-[8px] text-white transition'
+            aria-label='Toggle sidebar'
+          >
+            {isOpen ? <ChevronRight size={14} /> : <Menu size={14} />}
+          </motion.button>
+        </div>
+      </Link>
+
       <nav className='flex flex-col text-sm mt-[100px] text-center'>
         <AnimatePresence>
           {isOpen && (
@@ -66,27 +73,29 @@ export default function Sidebar() {
                 visible: {
                   opacity: 1,
                   y: 0,
-                  transition: {
-                    staggerChildren: 0.05,
-                  },
+                  transition: { staggerChildren: 0.05 },
                 },
               }}
             >
               {SIDEBAR_MENU.map((item, index) => (
-                <motion.a
+                <motion.div
                   key={index}
-                  href={`#${item.toLowerCase()}`}
                   variants={{
                     hidden: { opacity: 0, y: 10 },
                     visible: { opacity: 1, y: 0 },
                   }}
                   transition={{ duration: 0.2 }}
-                  className={`${
-                    index === 0 ? 'border-y' : 'border-b'
-                  } block hover:text-[#9FFFA9] py-3 border-[#1C1C1C]`}
                 >
-                  {item}
-                </motion.a>
+                  <Link
+                    href={item.url}
+                    scroll={false}
+                    className={`${
+                      index === 0 ? 'border-y' : 'border-b'
+                    } block hover:text-[#9FFFA9] py-3 border-[#1C1C1C]`}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
               ))}
             </motion.div>
           )}
