@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
@@ -23,4 +23,51 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.animate-typing {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 4px solid currentColor;
+  animation: typing 3s steps(30, end) forwards, blink 0.8s step-end infinite;
+}
+
+@keyframes typing-line {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.animate-typing-line {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 4px solid currentColor;
+  width: 0;
+  animation: typing-line 2s steps(30, end) forwards, blink 0.8s step-end infinite;
 }
