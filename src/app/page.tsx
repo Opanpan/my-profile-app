@@ -42,11 +42,11 @@ export default function Home() {
     return (
       <div className='flex justify-end gap-4'>
         <div className='flex flex-col justify-center items-center gap-2'>
-          <div className='bg-[#9FFFA9] w-[40px] h-[40px] rounded-[10px]'></div>
+          <div className='bg-[#9FFFA9] w-[20px] h-[20px] md:w-[40px] md:h-[40px] rounded-[5px] md:rounded-[10px]'></div>
           <p className='text-[#9FFFA9]'>#9FFFA9</p>
         </div>
         <div className='flex flex-col justify-center items-center gap-2'>
-          <div className='bg-[#0057FF] w-[40px] h-[40px] rounded-[10px]'></div>
+          <div className='bg-[#0057FF] w-[20px] h-[20px] md:w-[40px] md:h-[40px] rounded-[5px] md:rounded-[10px]'></div>
           <p className='text-[#0057FF]'>#0057FF</p>
         </div>
       </div>
@@ -57,18 +57,11 @@ export default function Home() {
     <div className='bg-[#1C1C1C] w-full h-screen p-8'>
       <RenderColorIndicator />
 
-      <div className='relative w-full flex'>
-        {/* 👇 Image behind the text */}
-        <Image
-          src='/logo-sidebar.svg'
-          alt='logo-sidebar'
-          width={600}
-          height={400}
-          priority
-          className='absolute top-20 left-1/5  z-0'
-        />
+      <div className='relative w-full flex mt-8'>
+        <div className='absolute z-0 left-[0] md:left-[10px] w-full h-full'>
+          <Image src='/logo-sidebar.svg' alt='logo-sidebar' fill />
+        </div>
 
-        {/* 👇 Text above */}
         <motion.p
           className='relative h-[432px] z-10 text-white text-[40px] md:text-[96px] font-semibold border-white pr-2 whitespace-pre-line'
           animate={{ opacity: [0.8, 1, 0.8] }}
@@ -85,10 +78,10 @@ export default function Home() {
         </motion.p>
       </div>
 
-      <p className='text-[#B1B1B1] font-extralight text-[24px] italic'>
+      <p className='text-[#B1B1B1] font-extralight text-sm md:text-lg italic'>
         Web Developer
       </p>
-      <button className='text-[#9FFFA9] border-[#9FFFA9] border px-4 py-2 rounded-[10px] mt-2 cursor-pointer'>
+      <button className='text-[#9FFFA9] text-sm md:text-lg border-[#9FFFA9] border px-4 py-2 rounded-[10px] mt-2 cursor-pointer'>
         Contact me !
       </button>
     </div>
