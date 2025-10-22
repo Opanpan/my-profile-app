@@ -1,45 +1,10 @@
 'use client';
-import { motion } from 'framer-motion';
+import Ballpit from '@/components/Ballpit';
+import TextType from '@/components/TextType';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const fullText: string = 'Hi,\nI’m Ifan,\nWeb Developer';
-  const [displayed, setDisplayed] = useState<string>('');
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
-  const [mounted, setMounted] = useState<boolean>(false);
-  const typingSpeed: number = 100;
-  const pauseTime: number = 1000;
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-
-    let i: number = isDeleting ? fullText.length : 0;
-    let interval: NodeJS.Timeout;
-
-    const startTyping = () => {
-      interval = setInterval(() => {
-        setDisplayed(fullText.slice(0, i + (isDeleting ? -1 : 1)));
-        i += isDeleting ? -1 : 1;
-
-        if (i === fullText.length && !isDeleting) {
-          clearInterval(interval);
-          setTimeout(() => setIsDeleting(true), pauseTime);
-        } else if (i === 0 && isDeleting) {
-          clearInterval(interval);
-          setTimeout(() => setIsDeleting(false), pauseTime);
-        }
-      }, typingSpeed);
-    };
-
-    startTyping();
-    return () => clearInterval(interval);
-  }, [isDeleting, mounted]);
-
   const RenderColorIndicator = () => (
     <div className='flex justify-end gap-4'>
       <div className='flex flex-col justify-center items-center gap-2'>
@@ -54,7 +19,20 @@ export default function Home() {
   );
 
   return (
-    <div className='bg-[#1C1C1C] w-full h-screen p-8'>
+    <div className='relative bg-[#1C1C1C] w-full h-screen overflow-hidden p-8'>
+      {/* 🪩 Ballpit background */}
+      <div className='absolute inset-0 z-10'>
+        <Ballpit
+          count={100}
+          gravity={0.01}
+          friction={0.9975}
+          wallBounce={0.95}
+          followCursor={false}
+          colors={['#9FFFA9', '#0057FF' , '#1C1C1C']}
+        />
+      </div>
+
+      {/* Foreground content */}
       <RenderColorIndicator />
 
       <div className='relative w-full flex mt-8'>
@@ -62,26 +40,22 @@ export default function Home() {
           <Image src='/logo-sidebar.svg' alt='logo-sidebar' fill priority />
         </div>
 
-        <motion.p
-          className='relative h-[432px] z-10 text-white text-[40px] md:text-[96px] font-semibold pr-2 whitespace-pre-line'
-          animate={{ opacity: [0.8, 1, 0.8] }}
-          transition={{ duration: 1, repeat: Infinity }}
-        >
-          {mounted && displayed}
-          <motion.span
-            className='inline-block w-[4px] bg-white ml-[2px]'
-            animate={{ opacity: [0, 1, 0] }}
-            transition={{ duration: 0.8, repeat: Infinity }}
-          >
-            &nbsp;
-          </motion.span>
-        </motion.p>
+        <TextType
+          text={[`Hi,\nI’m Ifan,\nWeb Developer`, '']}
+          typingSpeed={250}
+          pauseDuration={1500}
+          showCursor={true}
+          deletingSpeed={250}
+          cursorCharacter='_'
+          className='text-white relative h-[432px] z-10 text-[40px] md:text-[96px] font-semibold'
+        />
       </div>
 
       <p className='text-[#B1B1B1] font-extralight text-sm md:text-lg italic'>
         Web Developer
       </p>
-      <button className='text-[#9FFFA9] text-sm md:text-lg border-[#9FFFA9] border px-4 py-2 rounded-[10px] mt-2 cursor-pointer'>
+
+      <button className='relative z-[11] text-[#9FFFA9] text-sm md:text-lg border-[#9FFFA9] border px-4 py-2 rounded-[10px] mt-2 cursor-pointer'>
         Contact me !
       </button>
     </div>
