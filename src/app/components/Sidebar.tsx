@@ -85,7 +85,7 @@ export default function Sidebar() {
                     scroll={false}
                     className={`${
                       index === 0 ? 'border-y' : 'border-b'
-                    } block hover:text-[#9FFFA9] py-3 border-[#1C1C1C]`}
+                    } block hover:text-[#9FFFA9] py-3 border-[#1C1C1C] text-text`}
                   >
                     {item.name}
                   </Link>

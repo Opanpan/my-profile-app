@@ -1,22 +1,23 @@
 @import 'tailwindcss';
 
 :root {
+  --text-color: #000000
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
+    --text-color: #ffffff;
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+@theme inline {
+  --color-text: var(--text-color);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 }
 
 body {
@@ -69,5 +70,6 @@ body {
   overflow: hidden;
   border-right: 4px solid currentColor;
   width: 0;
-  animation: typing-line 2s steps(30, end) forwards, blink 0.8s step-end infinite;
+  animation: typing-line 2s steps(30, end) forwards,
+    blink 0.8s step-end infinite;
 }
