@@ -28,8 +28,6 @@ export default function Sidebar() {
     }
   }, [isMobile]);
 
-  console.log(pathname);
-
   return (
     <>
       <motion.button
