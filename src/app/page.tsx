@@ -2,7 +2,6 @@
 import Ballpit from '@/components/Ballpit';
 import TextType from '@/components/TextType';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 export default function Home() {
   const RenderColorIndicator = () => (
@@ -20,7 +19,6 @@ export default function Home() {
 
   return (
     <div className='relative bg-[#1C1C1C] w-full h-screen overflow-hidden p-8'>
-      {/* 🪩 Ballpit background */}
       <div className='absolute inset-0 z-10'>
         <Ballpit
           count={100}
@@ -32,7 +30,6 @@ export default function Home() {
         />
       </div>
 
-      {/* Foreground content */}
       <RenderColorIndicator />
 
       <div className='relative w-full flex mt-8'>
