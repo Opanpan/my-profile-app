@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { usePathname } from 'next/navigation';
 
 const SIDEBAR_MENU = [
   { name: 'About', url: '/about' },
@@ -17,6 +18,7 @@ const SIDEBAR_MENU = [
 
 export default function Sidebar() {
   const isMobile = useIsMobile();
+  const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(true);
 
@@ -26,12 +28,14 @@ export default function Sidebar() {
     }
   }, [isMobile]);
 
+  console.log(pathname);
+
   return (
     <>
       <motion.button
         onClick={() => setIsOpen(true)}
         whileTap={{ scale: 0.9 }}
-        className='flex items-center left-[10px] top-[10px] justify-center absolute h-[40px] w-[40px] bg-[#222] hover:bg-[#333] border border-[#333] p-2 rounded-[8px] text-white transition'
+        className='flex items-center left-[10px] top-[10px] justify-center absolute h-[40px] w-[40px] bg-[#222] hover:bg-[#333] border border-[#333] p-2 rounded-[8px] text-white transition cursor-pointer'
         aria-label='Toggle sidebar'
       >
         <Menu size={14} />
@@ -51,13 +55,20 @@ export default function Sidebar() {
             <div className='flex justify-end p-2'>
               <button
                 onClick={() => setIsOpen(false)}
-                className='flex items-center justify-center h-[40px] w-[40px] bg-[#222] hover:bg-[#333] border border-[#333] p-2 rounded-[8px] text-white transition'
+                className='flex items-center justify-center h-[40px] w-[40px] bg-[#222] hover:bg-[#333] border border-[#333] p-2 rounded-[8px] text-white transition cursor-pointer'
               >
                 <X size={14} />
               </button>
             </div>
 
-            <Link href='/'>
+            <Link
+              href='/'
+              onClick={() => {
+                if (isMobile) {
+                  setIsOpen(false);
+                }
+              }}
+            >
               <div className='p-4 flex flex-col items-center bg-black rounded-[20px] mx-4 relative'>
                 <Image
                   src='/logo-sidebar.svg'
@@ -71,7 +82,11 @@ export default function Sidebar() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className='text-xs mt-2'
+                  className={`${
+                    pathname === '/'
+                      ? 'text-[#9FFFA9] font-semibold'
+                      : 'text-white'
+                  } text-xs mt-2`}
                 >
                   Web Developer
                 </motion.p>
@@ -89,9 +104,16 @@ export default function Sidebar() {
                   <Link
                     href={item.url}
                     scroll={false}
-                    className={`${
-                      index === 0 ? 'border-y' : 'border-b'
-                    } block hover:text-[#9FFFA9] py-3 border-[#1C1C1C] text-white`}
+                    className={`${index === 0 ? 'border-y' : 'border-b'} ${
+                      pathname === item.url
+                        ? 'text-[#9FFFA9] font-semibold'
+                        : 'text-white'
+                    }  block hover:text-[#9FFFA9] py-3 border-[#1C1C1C]`}
+                    onClick={() => {
+                      if (isMobile) {
+                        setIsOpen(false);
+                      }
+                    }}
                   >
                     {item.name}
                   </Link>
