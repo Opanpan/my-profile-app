@@ -33,7 +33,7 @@ export default function Sidebar() {
       <motion.button
         onClick={() => setIsOpen(true)}
         whileTap={{ scale: 0.9 }}
-        className='flex items-center left-[10px] top-[10px] justify-center absolute h-[40px] w-[40px] bg-[#222] hover:bg-[#333] border border-[#333] p-2 rounded-[8px] text-white transition cursor-pointer'
+        className='flex z-49 items-center left-[10px] top-[10px] justify-center absolute h-[40px] w-[40px] bg-[#222] hover:bg-[#333] border border-[#333] p-2 rounded-[8px] text-white transition cursor-pointer'
         aria-label='Toggle sidebar'
       >
         <Menu size={14} />
