@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
@@ -9,7 +9,7 @@ import { useIsMobile } from '../hooks/useIsMobile';
 
 const SIDEBAR_MENU = [
   { name: 'About', url: '/about' },
-  { name: 'Skills', url: '/skills' },
+  { name: 'Skill', url: '/skill' },
   { name: 'Education', url: '/education' },
   { name: 'Experience', url: '/experience' },
   { name: 'Contact', url: '/contact' },
@@ -19,6 +19,12 @@ export default function Sidebar() {
   const isMobile = useIsMobile();
 
   const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    if (isMobile) {
+      setIsOpen(false);
+    }
+  }, [isMobile]);
 
   return (
     <>
@@ -85,7 +91,7 @@ export default function Sidebar() {
                     scroll={false}
                     className={`${
                       index === 0 ? 'border-y' : 'border-b'
-                    } block hover:text-[#9FFFA9] py-3 border-[#1C1C1C] text-text`}
+                    } block hover:text-[#9FFFA9] py-3 border-[#1C1C1C] text-white`}
                   >
                     {item.name}
                   </Link>

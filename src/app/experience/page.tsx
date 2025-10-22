@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
-export default function About() {
+export default function Experience() {
   const textRef = useRef<HTMLSpanElement | null>(null);
   const fullText = 'Under Construction';
 
