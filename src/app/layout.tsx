@@ -11,7 +11,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'My Profile',
+  title: 'Ifan Alriansyah',
   description:
     'This is my personal profile website showcasing my projects and experience.',
 };
