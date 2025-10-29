@@ -3,6 +3,7 @@
 import TextType from '@/components/TextType';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { useIsMobile } from './hooks/useIsMobile';
 
 const Ballpit = dynamic(() => import('../components/Ballpit'), {
   ssr: false,
@@ -10,6 +11,8 @@ const Ballpit = dynamic(() => import('../components/Ballpit'), {
 });
 
 export default function Home() {
+  const isMobile = useIsMobile();
+
   const RenderColorIndicator = () => (
     <div className='flex justify-end gap-4'>
       <div className='flex flex-col justify-center items-center gap-2'>
@@ -24,10 +27,10 @@ export default function Home() {
   );
 
   return (
-    <div className='relative bg-[#1C1C1C] w-full h-screen overflow-hidden p-8'>
-      <div className='absolute inset-0 z-10'>
+    <div className='relative bg-[#1C1C1C] w-full h-full overflow-hidden p-8'>
+      <div className='absolute inset-0 z-0'>
         <Ballpit
-          count={100}
+          count={isMobile ? 30 : 100}
           gravity={0.01}
           friction={0.9975}
           wallBounce={0.95}
@@ -58,7 +61,10 @@ export default function Home() {
         Web Developer
       </p>
 
-      <button className='relative z-[11] text-[#9FFFA9] text-sm md:text-lg border-[#9FFFA9] border px-4 py-2 rounded-[10px] mt-2 cursor-pointer'>
+      <button
+        onClick={() => console.log('E')}
+        className='relative z-[11] text-[#9FFFA9] text-sm md:text-lg border-[#9FFFA9] border px-4 py-2 rounded-[10px] mt-2 cursor-pointer'
+      >
         Contact me !
       </button>
     </div>
