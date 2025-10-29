@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { Canvas, extend, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import {
   useGLTF,
   useTexture,
@@ -16,16 +16,12 @@ import {
   useSphericalJoint,
   RigidBodyProps,
 } from '@react-three/rapier';
-import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
 import * as THREE from 'three';
 
-// replace with your own imports, see the usage snippet for details
-import lanyard from './lanyard.png';
-
 import './Lanyard.css';
+import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
-extend({ MeshLineGeometry, MeshLineMaterial });
 
 interface LanyardProps {
   position?: [number, number, number];
@@ -284,8 +280,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
         </RigidBody>
       </group>
       <mesh ref={band}>
-        <meshLineGeometry />
-        <meshLineMaterial
+        <MeshLineGeometry />
+        <MeshLineMaterial
           color='white'
           depthTest={false}
           resolution={isSmall ? [1000, 2000] : [1000, 1000]}
