@@ -3,31 +3,25 @@
     /* ✅ Modern JS output for browsers */
     "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
-
     /* ✅ Better dev ergonomics */
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-
     /* ✅ Module system for Next.js & bundlers */
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-
     /* ✅ TypeScript project hygiene */
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
-
     /* ✅ React / JSX setup for Next.js */
-    "jsx": "preserve",
-
+    "jsx": "react-jsx",
     /* ✅ Type-safe imports */
     "paths": {
       "@/*": ["./src/*"]
     },
-
     /* ✅ Next.js plugin (handles special routes, layouts, etc.) */
     "plugins": [
       {
@@ -41,7 +35,8 @@
     "src/**/*",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
