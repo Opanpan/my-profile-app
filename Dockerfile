@@ -1,32 +1,42 @@
-# Use Node.js LTS
-FROM node:18-alpine AS builder
+# -------------------------
+# 1. Build stage
+# -------------------------
+FROM node:20-alpine AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Copy package files first for better caching
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --legacy-peer-deps
+# Use --frozen-lockfile if you have a lockfile for reproducible builds
+RUN npm ci --legacy-peer-deps
 
-# Copy source code
+# Copy all source code
 COPY . .
 
-# Build Next.js app
+# Build the Next.js app
 RUN npm run build
 
 # -------------------------
-# Production image
+# 2. Production stage
 # -------------------------
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 WORKDIR /app
+
+# Set NODE_ENV to production
+ENV NODE_ENV=production
 
 # Copy only necessary files from builder
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/next.config.* ./
 
+# Expose port 3000
 EXPOSE 3000
+
+# Run Next.js in production mode
 CMD ["npm", "start"]
