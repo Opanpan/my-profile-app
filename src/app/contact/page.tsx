@@ -1,81 +1,108 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import Silk from '@/components/Silk';
 
 export default function Contact() {
-  const textRef = useRef<HTMLSpanElement | null>(null);
-  const fullText = 'Under Construction';
-
-  useEffect(() => {
-    if (!textRef.current) return;
-
-    let index = 0;
-    let deleting = false;
-    let timeoutId: number;
-    const typingSpeed = 80;
-    const pause = 900;
-
-    const tick = () => {
-      if (!textRef.current) return;
-
-      if (!deleting) {
-        textRef.current.textContent = fullText.slice(0, index + 1);
-        index++;
-        if (index >= fullText.length) {
-          timeoutId = window.setTimeout(() => {
-            deleting = true;
-            tick();
-          }, pause);
-          return;
-        }
-      } else {
-        textRef.current.textContent = fullText.slice(0, index - 1);
-        index--;
-        if (index <= 0) {
-          timeoutId = window.setTimeout(() => {
-            deleting = false;
-            tick();
-          }, pause);
-          return;
-        }
-      }
-
-      timeoutId = window.setTimeout(tick, typingSpeed);
-    };
-
-    tick();
-    return () => clearTimeout(timeoutId);
-  }, []);
-
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center p-8 bg-[--color-main2] text-[--color-text] transition-colors duration-300'>
-      <header className='w-full max-w-5xl flex items-center justify-center mb-8'>
-        <div className='flex items-center gap-3'>
-          <div className='w-10 h-10 rounded-lg bg-[--color-main3] flex items-center justify-center shadow-sm'>
-            🚧
+    <div className='relative flex flex-col justify-between bg-[#1C1C1C] w-full min-h-screen'>
+      <div className='absolute inset-0 overflow-y-hidden'>
+        <Silk
+          speed={5}
+          scale={1}
+          color='#9FFFA9' // Bright green accent color
+          noiseIntensity={1.5}
+          rotation={0}
+        />
+      </div>
+
+      <div className=''>
+        <div className='relative z-10 w-full max-w-7xl mx-auto p-8 md:p-16 lg:p-24 bg-black/80 backdrop-blur-sm shadow-2xl rounded-lg'>
+          <div className='flex flex-col lg:flex-row gap-16'>
+            <div className='lg:w-2/5 text-white'>
+              <h2 className='text-4xl md:text-5xl font-extrabold mb-8'>
+                Find Me Here
+              </h2>
+
+              <p className='text-3xl font-medium mb-6'>
+                <a
+                  href='mailto:fanalriansyah@gmail.com'
+                  className='text-[#9FFFA9] hover:text-white transition duration-300'
+                >
+                  fanalriansyah@gmail.com
+                </a>
+              </p>
+
+              <p className='text-xl text-gray-400 mb-10'>
+                Based in: Jakarta, Indonesia
+              </p>
+
+              {/* <div className='flex space-x-6 text-3xl mb-10'>
+                <a
+                  href='#'
+                  aria-label='LinkedIn'
+                  className='text-gray-400 hover:text-[#9FFFA9] transition duration-300'
+                >
+                  in
+                </a>
+                <a
+                  href='#'
+                  aria-label='Twitter'
+                  className='text-gray-400 hover:text-[#9FFFA9] transition duration-300'
+                ></a>
+                <a
+                  href='#'
+                  aria-label='GitHub'
+                  className='text-gray-400 hover:text-[#9FFFA9] transition duration-300'
+                >
+                  Git
+                </a>
+              </div> */}
+            </div>
+
+            <div className='lg:w-3/5'>
+              <h2 className='text-4xl md:text-5xl font-extrabold text-white mb-8'>
+                Send Me a Message
+              </h2>
+
+              <form className='space-y-6'>
+                <input
+                  type='text'
+                  placeholder='Your Full Name'
+                  className='w-full p-4 bg-[#1C1C1C] text-white border-2 border-gray-600 focus:border-[#9FFFA9] outline-none rounded-lg transition duration-300'
+                  required
+                />
+
+                <input
+                  type='email'
+                  placeholder='Your Email Address'
+                  className='w-full p-4 bg-[#1C1C1C] text-white border-2 border-gray-600 focus:border-[#9FFFA9] outline-none rounded-lg transition duration-300'
+                  required
+                />
+
+                <input
+                  type='text'
+                  placeholder='How can I help you?'
+                  className='w-full p-4 bg-[#1C1C1C] text-white border-2 border-gray-600 focus:border-[#9FFFA9] outline-none rounded-lg transition duration-300'
+                />
+
+                <textarea
+                  placeholder='Your Message'
+                  rows={5}
+                  className='w-full p-4 bg-[#1C1C1C] text-white border-2 border-gray-600 focus:border-[#9FFFA9] outline-none rounded-lg transition duration-300 resize-none'
+                  required
+                />
+
+                <button
+                  type='submit'
+                  className='cursor-pointer w-full md:w-auto px-10 py-4 text-xl font-bold bg-[#9FFFA9] text-black rounded-lg hover:bg-white transition duration-300 transform hover:scale-[1.01] shadow-lg'
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
           </div>
-          <h1 className='text-lg font-semibold'>Ifan&apos;s Site</h1>
         </div>
-      </header>
-
-      <main className='w-full max-w-3xl bg-[--color-main1] rounded-2xl p-8 md:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.4)] text-center'>
-        <h2 className='text-xl sm:text-3xl md:text-6xl font-extrabold mb-4 leading-tight'>
-          <span ref={textRef} className='whitespace-pre' />
-          <span className='inline-block w-[6px] h-[1.1em] bg-[--color-text] align-middle ml-2 animate-pulse' />
-        </h2>
-
-        <p className='text-[--color-foreground] text-sm md:text-base opacity-90 mb-6'>
-          I’m doing some upgrades and polishing — come back soon.
-          <br />
-          In the meantime, you can reach me at{' '}
-          <a
-            className='underline hover:opacity-80 transition-opacity'
-            href='mailto:fanalriansyah@gmail.com'
-          >
-            fanalriansyah@gmail.com
-          </a>
-        </p>
-      </main>
+      </div>
     </div>
   );
 }
