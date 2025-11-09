@@ -29,14 +29,14 @@ export default function Home() {
   return (
     <div className='relative bg-[#1C1C1C] w-full h-full overflow-hidden p-8'>
       <div className='absolute inset-0 z-0'>
-        <Ballpit
+        {/* <Ballpit
           count={isMobile ? 30 : 100}
           gravity={0.01}
           friction={0.9975}
           wallBounce={0.95}
           followCursor={false}
           colors={['#9FFFA9', '#0057FF', '#1C1C1C']}
-        />
+        /> */}
       </div>
 
       <RenderColorIndicator />
