@@ -1,7 +1,6 @@
 'use client';
 
 import BottleAndCap from '@/components/BottleAndCap';
-import BottlePreview from '@/components/BottleAndCap';
 import Lanyard from '@/components/Lanyard';
 
 export default function About() {
