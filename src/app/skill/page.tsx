@@ -1,81 +1,162 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiJavascript,
+  SiAngular,
+  SiVuedotjs,
+  SiJquery,
+  SiShadcnui,
+  SiAntdesign,
+  SiHtml5,
+  SiCss3,
+  SiNodedotjs,
+  SiExpress,
+  SiGo,
+  SiC,
+} from 'react-icons/si';
+
+const frontEndTech = [
+  {
+    node: <SiJavascript color='white' size={50} />,
+    title: 'JavaScript',
+    href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+  },
+  {
+    node: <SiTypescript color='white' size={50} />,
+    title: 'TypeScript',
+    href: 'https://www.typescriptlang.org/',
+  },
+  {
+    node: <SiHtml5 color='white' size={50} />,
+    title: 'HTML5',
+    href: 'https://www.typescriptlang.org/',
+  },
+  {
+    node: <SiCss3 color='white' size={50} />,
+    title: 'CSS3',
+    href: 'https://www.typescriptlang.org/',
+  },
+  {
+    node: <SiReact color='white' size={50} />,
+    title: 'React',
+    href: 'https://react.dev',
+  },
+  {
+    node: <SiNextdotjs color='white' size={50} />,
+    title: 'Next',
+    href: 'https://nextjs.org',
+  },
+  {
+    node: <SiAngular color='white' size={50} />,
+    title: 'Angular',
+    href: 'https://nextjs.org',
+  },
+  {
+    node: <SiVuedotjs color='white' size={50} />,
+    title: 'Vue',
+    href: 'https://nextjs.org',
+  },
+  {
+    node: <SiJquery color='white' size={50} />,
+    title: 'Jquery',
+    href: 'https://nextjs.org',
+  },
+  {
+    node: <SiTailwindcss color='white' size={50} />,
+    title: 'Tailwind CSS',
+    href: 'https://tailwindcss.com/',
+  },
+  {
+    node: <SiShadcnui color='white' size={50} />,
+    title: 'Shadcn',
+    href: 'https://tailwindcss.com/',
+  },
+  {
+    node: <SiAntdesign color='white' size={50} />,
+    title: 'Antd',
+    href: 'https://tailwindcss.com/',
+  },
+];
+
+const backEndTech = [
+  {
+    node: <SiNodedotjs color='white' size={50} />,
+    title: 'NodeJs',
+    href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+  },
+  {
+    node: <SiExpress color='white' size={50} />,
+    title: 'ExpressJs',
+    href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+  },
+  {
+    node: <SiGo color='white' size={50} />,
+    title: 'Go',
+    href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+  },
+  {
+    node: <SiC color='white' size={50} />,
+    title: 'C',
+    href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+  },
+];
 
 export default function Skill() {
-  const textRef = useRef<HTMLSpanElement | null>(null);
-  const fullText = 'Under Construction';
-
-  useEffect(() => {
-    if (!textRef.current) return;
-
-    let index = 0;
-    let deleting = false;
-    let timeoutId: number;
-    const typingSpeed = 80;
-    const pause = 900;
-
-    const tick = () => {
-      if (!textRef.current) return;
-
-      if (!deleting) {
-        textRef.current.textContent = fullText.slice(0, index + 1);
-        index++;
-        if (index >= fullText.length) {
-          timeoutId = window.setTimeout(() => {
-            deleting = true;
-            tick();
-          }, pause);
-          return;
-        }
-      } else {
-        textRef.current.textContent = fullText.slice(0, index - 1);
-        index--;
-        if (index <= 0) {
-          timeoutId = window.setTimeout(() => {
-            deleting = false;
-            tick();
-          }, pause);
-          return;
-        }
-      }
-
-      timeoutId = window.setTimeout(tick, typingSpeed);
-    };
-
-    tick();
-    return () => clearTimeout(timeoutId);
-  }, []);
-
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center p-8 bg-[--color-main2] text-[--color-text] transition-colors duration-300'>
-      <header className='w-full max-w-5xl flex items-center justify-center mb-8'>
-        <div className='flex items-center gap-3'>
-          <div className='w-10 h-10 rounded-lg bg-[--color-main3] flex items-center justify-center shadow-sm'>
-            🚧
-          </div>
-          <h1 className='text-lg font-semibold'>Ifan&apos;s Site</h1>
+    <div className='relative flex flex-col bg-[#1C1C1C] w-full min-h-screen overflow-hidden'>
+      <div className='relative z-10 w-full md:w-[50%] p-10 mt-20'>
+        <p className='text-[#9FFFA9] text-[72px] font-semibold'>Skill</p>
+      </div>
+
+      <div className='flex flex-col gap-2 p-10'>
+        <p className='font-semibold text-white text-2xl mb-4'>Frontend</p>
+
+        <div className='flex flex-wrap justify-center md:justify-start gap-10'>
+          {frontEndTech.map((item, index) => (
+            <div key={index} className='w-[100px]'>
+              <a
+                href={item.href}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='flex flex-col items-center hover:scale-110 transition-transform'
+              >
+                {item.node}
+                <p className='text-center text-white mt-2'>{item.title}</p>
+              </a>
+            </div>
+          ))}
         </div>
-      </header>
+      </div>
 
-      <main className='w-full max-w-3xl bg-[--color-main1] rounded-2xl p-8 md:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.4)] text-center'>
-        <h2 className='text-xl sm:text-3xl md:text-6xl font-extrabold mb-4 leading-tight'>
-          <span ref={textRef} className='whitespace-pre' />
-          <span className='inline-block w-[6px] h-[1.1em] bg-[--color-text] align-middle ml-2 animate-pulse' />
-        </h2>
+      <div className='flex flex-col gap-2 p-10'>
+        <p className='font-semibold text-white text-2xl mb-4'>Backend</p>
 
-        <p className='text-[--color-foreground] text-sm md:text-base opacity-90 mb-6'>
-          I’m doing some upgrades and polishing — come back soon.
-          <br />
-          In the meantime, you can reach me at{' '}
-          <a
-            className='underline hover:opacity-80 transition-opacity'
-            href='mailto:fanalriansyah@gmail.com'
-          >
-            fanalriansyah@gmail.com
-          </a>
+        <div className='flex flex-wrap justify-center md:justify-start gap-10'>
+          {backEndTech.map((item, index) => (
+            <div key={index} className='w-[100px]'>
+              <a
+                href={item.href}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='flex flex-col items-center hover:scale-110 transition-transform'
+              >
+                {item.node}
+                <p className='text-center text-white mt-2'>{item.title}</p>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className='relative flex justify-end z-10 w-full p-10'>
+        <p className='text-[#252525] w-[50%] text-[100px] xl:text-[200px] leading-[80%] font-semibold'>
+          Skill
         </p>
-      </main>
+      </div>
     </div>
   );
 }

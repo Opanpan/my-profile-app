@@ -47,7 +47,7 @@ export default function Home() {
         </div>
 
         <TextType
-          text={[`Hi,\nI’m Ifan,\nWeb Developer`, '']}
+          text={[`Hi,\nI’m Ifan,\nFrontend Developer`, '']}
           typingSpeed={250}
           pauseDuration={1500}
           showCursor={true}
@@ -58,7 +58,7 @@ export default function Home() {
       </div>
 
       <p className='text-[#B1B1B1] font-extralight text-sm md:text-lg italic'>
-        Web Developer
+        Frontend Developer
       </p>
 
       <button

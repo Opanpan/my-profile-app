@@ -1,5 +1,7 @@
 'use client';
 
+import BottleAndCap from '@/components/BottleAndCap';
+import BottlePreview from '@/components/BottleAndCap';
 import Lanyard from '@/components/Lanyard';
 
 export default function About() {
@@ -7,6 +9,8 @@ export default function About() {
     <div className='relative flex flex-col justify-between bg-[#1C1C1C] w-full h-screen overflow-hidden'>
       <div className='absolute inset-0 '>
         <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+
+        {/* <BottleAndCap /> */}
       </div>
 
       <div className='relative z-10 w-full md:w-[50%] p-10 mt-20'>

@@ -4,26 +4,26 @@ import Silk from '@/components/Silk';
 
 export default function Contact() {
   return (
-    <div className='relative flex flex-col justify-between bg-[#1C1C1C] w-full min-h-screen'>
+    <div className='relative flex flex-col justify-between bg-[#1C1C1C] w-full min-h-screen px-8 py-14'>
       <div className='absolute inset-0 overflow-y-hidden'>
         <Silk
           speed={5}
           scale={1}
-          color='#9FFFA9' // Bright green accent color
+          color='#9FFFA9'
           noiseIntensity={1.5}
           rotation={0}
         />
       </div>
 
       <div className=''>
-        <div className='relative z-10 w-full max-w-7xl mx-auto p-8 md:p-16 lg:p-24 bg-black/80 backdrop-blur-sm shadow-2xl rounded-lg'>
-          <div className='flex flex-col lg:flex-row gap-16'>
+        <div className='relative z-10 w-full max-w-7xl mx-auto p-6 md:p-16 lg:p-24 bg-black/80 backdrop-blur-sm shadow-2xl rounded-lg'>
+          <div className='flex flex-col lg:flex-row gap-4'>
             <div className='lg:w-2/5 text-white'>
-              <h2 className='text-4xl md:text-5xl font-extrabold mb-8'>
+              <h2 className='text-2xl md:text-5xl text-center md:text-left font-extrabold mb-8'>
                 Find Me Here
               </h2>
 
-              <p className='text-3xl font-medium mb-6'>
+              <p className='text-sm md:text-3xl font-medium mb-6'>
                 <a
                   href='mailto:fanalriansyah@gmail.com'
                   className='text-[#9FFFA9] hover:text-white transition duration-300'
@@ -32,7 +32,7 @@ export default function Contact() {
                 </a>
               </p>
 
-              <p className='text-xl text-gray-400 mb-10'>
+              <p className='text-sm md:text-xl text-gray-400 mb-10'>
                 Based in: Jakarta, Indonesia
               </p>
 
@@ -60,7 +60,7 @@ export default function Contact() {
             </div>
 
             <div className='lg:w-3/5'>
-              <h2 className='text-4xl md:text-5xl font-extrabold text-white mb-8'>
+              <h2 className='text-2xl md:text-5xl text-center md:text-left font-extrabold text-white mb-8'>
                 Send Me a Message
               </h2>
 
@@ -94,7 +94,7 @@ export default function Contact() {
 
                 <button
                   type='submit'
-                  className='cursor-pointer w-full md:w-auto px-10 py-4 text-xl font-bold bg-[#9FFFA9] text-black rounded-lg hover:bg-white transition duration-300 transform hover:scale-[1.01] shadow-lg'
+                  className='cursor-pointer w-full md:w-auto px-5 py-4 text-md md:text-xl font-bold bg-[#9FFFA9] text-black rounded-lg hover:bg-white transition duration-300 transform hover:scale-[1.01] shadow-lg'
                 >
                   Send Message
                 </button>

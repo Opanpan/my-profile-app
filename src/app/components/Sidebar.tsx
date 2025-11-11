@@ -84,9 +84,9 @@ export default function Sidebar() {
                     pathname === '/'
                       ? 'text-[#9FFFA9] font-semibold'
                       : 'text-white'
-                  } text-xs mt-2`}
+                  } text-xs mt-2 text-center`}
                 >
-                  Web Developer
+                  Ifan Alriansyah
                 </motion.p>
               </div>
             </Link>
