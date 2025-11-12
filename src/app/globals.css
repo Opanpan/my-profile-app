@@ -123,14 +123,23 @@
   }
 }
 
-.animate-typing-line {
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 4px solid currentColor;
-  width: 0;
-  animation: typing-line 2s steps(30, end) forwards,
-    blink 0.8s step-end infinite;
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #0057FF;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #9FFFA9;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
 }
 
 .dark {
