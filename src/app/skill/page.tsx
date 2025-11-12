@@ -17,6 +17,12 @@ import {
   SiExpress,
   SiGo,
   SiC,
+  SiMysql,
+  SiDocker,
+  SiJenkins,
+  SiGit,
+  SiLinux,
+  SiPostgresql,
 } from 'react-icons/si';
 
 const listIcon = [
@@ -68,6 +74,25 @@ const listIcon = [
         title: 'C',
         href: 'https://en.wikipedia.org/wiki/C_(programming_language)',
       },
+      {
+        Icon: SiMysql,
+        title: 'MySQL',
+        href: 'https://www.mysql.com/',
+      },
+      {
+        Icon: SiPostgresql,
+        title: 'PostgreSQL',
+        href: 'https://www.postgresql.org/',
+      },
+    ],
+  },
+  {
+    title: 'Other',
+    data: [
+      { Icon: SiDocker, title: 'Docker', href: 'https://www.docker.com/' },
+      { Icon: SiJenkins, title: 'Jenkins', href: 'https://www.jenkins.io/' },
+      { Icon: SiGit, title: 'Git', href: 'https://git-scm.com/' },
+      { Icon: SiLinux, title: 'Linux', href: 'https://www.kernel.org/' },
     ],
   },
 ];
@@ -75,19 +100,22 @@ const listIcon = [
 export default function Skill() {
   return (
     <div className='relative flex flex-col bg-[#1C1C1C] w-full min-h-screen overflow-hidden'>
-      <div className='relative z-10 w-full md:w-[50%] p-10 mt-20'>
+      <div className='relative z-10 w-full md:w-[50%] p-10'>
         <p className='text-[#9FFFA9] text-[72px] font-semibold'>Skill</p>
       </div>
 
       {listIcon.map((section, sectionIndex) => (
-        <div key={sectionIndex} className='relative z-[10] flex flex-col gap-2 p-10'>
+        <div
+          key={sectionIndex}
+          className='relative z-[10] flex flex-col gap-2 p-10'
+        >
           <p className='font-semibold text-white text-2xl mb-4'>
             {section.title}
           </p>
 
           <div className='flex flex-wrap justify-center md:justify-start gap-10'>
             {section.data.map(({ Icon, title, href }, iconIndex) => (
-              <div key={iconIndex} className='w-[100px] group'>
+              <div key={iconIndex} className='w-[50px] md:w-[100px] group'>
                 <a
                   href={href}
                   target='_blank'
@@ -102,7 +130,15 @@ export default function Skill() {
                         : 'group-hover:text-[#9FFFA9]'
                     }`}
                   />
-                  <p className='text-center text-white mt-2'>{title}</p>
+                  <p
+                    className={`text-center text-white mt-2 ${
+                      iconIndex % 2 === 0
+                        ? 'group-hover:text-[#9FFFA9]'
+                        : 'group-hover:text-[#0057FF]'
+                    } `}
+                  >
+                    {title}
+                  </p>
                 </a>
               </div>
             ))}
@@ -111,7 +147,7 @@ export default function Skill() {
       ))}
 
       {/* BACKGROUND LABEL */}
-      <div className='absolute bottom-[10px] flex justify-end w-full p-10'>
+      <div className='absolute bottom-[20px] flex justify-end w-full p-10'>
         <p className='text-[#252525] w-[50%] text-[100px] xl:text-[200px] leading-[80%] font-semibold'>
           Skill
         </p>
