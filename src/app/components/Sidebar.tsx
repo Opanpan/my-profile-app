@@ -11,7 +11,6 @@ import { usePathname } from 'next/navigation';
 const SIDEBAR_MENU = [
   { name: 'About', url: '/about' },
   { name: 'Skill', url: '/skill' },
-  { name: 'Education', url: '/education' },
   { name: 'Experience', url: '/experience' },
   { name: 'Contact', url: '/contact' },
 ];
