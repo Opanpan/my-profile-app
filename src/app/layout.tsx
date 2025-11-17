@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang='en' className={poppins.variable}>
       <body className={`${poppins.className} text-white flex min-h-screen`}>
         <Sidebar />
-        <main className='flex-1 h-screen overflow-y-auto bg-white text-black custom-scrollbar'>
+        <main className='flex-1 h-screen overflow-y-auto bg-[#1C1C1C] text-black custom-scrollbar'>
           {children}
         </main>
       </body>
