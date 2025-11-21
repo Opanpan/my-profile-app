@@ -29,14 +29,16 @@ export default function Home() {
   return (
     <div className='relative bg-[#1C1C1C] w-full h-full overflow-hidden p-8'>
       <div className='absolute inset-0 z-0'>
-        {/* <Ballpit
-          count={isMobile ? 30 : 100}
-          gravity={0.01}
-          friction={0.9975}
-          wallBounce={0.95}
-          followCursor={false}
-          colors={['#9FFFA9', '#0057FF', '#1C1C1C']}
-        /> */}
+        {!isMobile && (
+          <Ballpit
+            count={isMobile ? 30 : 100}
+            gravity={0.01}
+            friction={0.9975}
+            wallBounce={0.95}
+            followCursor={false}
+            colors={['#9FFFA9', '#0057FF', '#1C1C1C']}
+          />
+        )}
       </div>
 
       <RenderColorIndicator />
@@ -47,13 +49,13 @@ export default function Home() {
         </div>
 
         <TextType
-          text={[`Hi,\nI’m Ifan,\nFrontend Developer`, '']}
+          text={[`Hi,\nI’m Ifan,\nFrontend \nDeveloper`, '']}
           typingSpeed={250}
           pauseDuration={1500}
           showCursor={true}
           deletingSpeed={250}
           cursorCharacter='_'
-          className='text-white relative h-[432px] z-10 text-[40px] md:text-[96px] font-semibold'
+          className='text-white relative h-[250px] md:h-[550px] z-10 text-[40px] md:text-[96px] font-semibold'
         />
       </div>
 

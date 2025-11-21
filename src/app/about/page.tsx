@@ -17,20 +17,26 @@ export default function About() {
           Me, Myself and I
         </p>
         <p className='text-white mt-[40px] font-light '>
-          To be honest, becoming a front-end developer{' '}
-          <span className='text-xl font-semibold text-black bg-[#9FFFA9]'>
-            wasn't my goal
+          I am a{' '}
+          <span className='p-[1px] font-semibold text-black bg-[#9FFFA9]'>
+            frontend
           </span>{' '}
-          from the start. My major was information technology, but I couldn't
-          code until I graduated. Long story short, I'm a{' '}
-          <span className='text-xl font-semibold text-black bg-[#0057FF]'>
-            front-end developer
+          developer with{' '}
+          <span className='p-[1px] font-semibold text-black bg-[#0057FF]'>
+            4+ years
           </span>
-          with over{' '}
-          <span className='text-xl font-semibold text-black bg-[#9FFFA9]'>
-            four years of experience.
+          of experience for fintech and enterprise systems. Skilled in building
+          scalable, and maintainable web applications. Proven track record in
+          delivering{' '}
+          <span className='p-[1px] font-semibold text-black bg-[#9FFFA9]'>
+            high-quality products
           </span>{' '}
-          If you'd like to know more about me, contact me.
+          for major clients such as Bank Mandiri and CIMB Niaga. Passionate
+          about clean architecture,{' '}
+          <span className='p-[1px] font-semibold text-black bg-[#0057FF]'>
+            UI excellence
+          </span>
+          , and team collaboration.
         </p>
       </div>
 

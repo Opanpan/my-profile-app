@@ -1,6 +1,12 @@
 'use client';
 
 import Silk from '@/components/Silk';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
+
+const DATA = [
+  { Icon: SiLinkedin, href: 'https://www.linkedin.com/in/ifannnn/' },
+  { Icon: SiGithub, href: 'https://github.com/Opanpan' },
+];
 
 export default function Contact() {
   return (
@@ -36,27 +42,27 @@ export default function Contact() {
                 Based in: Jakarta, Indonesia
               </p>
 
-              {/* <div className='flex space-x-6 text-3xl mb-10'>
-                <a
-                  href='#'
-                  aria-label='LinkedIn'
-                  className='text-gray-400 hover:text-[#9FFFA9] transition duration-300'
-                >
-                  in
-                </a>
-                <a
-                  href='#'
-                  aria-label='Twitter'
-                  className='text-gray-400 hover:text-[#9FFFA9] transition duration-300'
-                ></a>
-                <a
-                  href='#'
-                  aria-label='GitHub'
-                  className='text-gray-400 hover:text-[#9FFFA9] transition duration-300'
-                >
-                  Git
-                </a>
-              </div> */}
+              <div className='flex flex-wrap justify-center md:justify-start gap-10'>
+                {DATA.map(({ Icon, href }, iconIndex) => (
+                  <div key={iconIndex} className='w-[50px] md:w-[100px] group'>
+                    <a
+                      href={href}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='flex flex-col  transition-transform hover:scale-110'
+                    >
+                      <Icon
+                        size={50}
+                        className={`text-white transition-colors duration-300 ${
+                          iconIndex % 2 === 0
+                            ? 'group-hover:text-[#0057FF]'
+                            : 'group-hover:text-[#9FFFA9]'
+                        }`}
+                      />
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className='lg:w-3/5'>
