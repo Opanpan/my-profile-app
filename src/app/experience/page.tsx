@@ -45,7 +45,7 @@ const data = [
     title: 'CIMB Biztrip',
     subtitle: 'Booking Flight and Hotel Application',
     url: '',
-    date: 'Jojonomic - (Dec 2021 - Sep 2022)',
+    date: 'Jojonomic - (Jan 2021 - Sep 2022)',
     tech: [
       'Javascript',
       'Vue',
